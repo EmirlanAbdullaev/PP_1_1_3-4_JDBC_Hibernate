@@ -9,14 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
+    private UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
 
     public void createUsersTable() {
-        userDaoJDBC.createUsersTable();
+        try {
+            userDaoJDBC.createUsersTable();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void dropUsersTable() {
-        userDaoJDBC.dropUsersTable();
+        try {
+            userDaoJDBC.dropUsersTable();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

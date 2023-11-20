@@ -9,14 +9,6 @@ public class Util {
     private static final String USER = "Emir";
     private static final String PASS = "100%Hlopok";
 
-    //    private Connection connection;
-//    public Util(){
-//        try {
-//            connection= DriverManager.getConnection(HOST,USER,PASS);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
     public static Connection getConnection() {
         Connection connection;
         try {

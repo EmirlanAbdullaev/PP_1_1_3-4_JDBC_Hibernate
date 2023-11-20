@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl extends Util implements UserDao {
-    Connection connection = getConnection();
 
     public UserDaoJDBCImpl() {
 
     }
 
-    public void createUsersTable() {
+    public void createUsersTable() throws SQLException {
         //СОЗДАНИЕ
+        Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         String sql="CREATE TABLE `mydbtest`.`users` (\n" +
                 "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
@@ -28,11 +28,15 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             preparedStatement.executeUpdate(sql);
         } catch (SQLException e) {
 
+        }finally {
+            preparedStatement.close();
+            connection.close();
         }
 
     }
 
-    public void dropUsersTable() {
+    public void dropUsersTable() throws SQLException {
+        Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         String sql="DROP TABLE `mydbtest`.`users`";
         try {
@@ -41,10 +45,14 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             System.out.println("drop db ok!");
         } catch (SQLException e) {
 
+        }finally {
+            preparedStatement.close();
+            connection.close();
         }
     }
 
     public void saveUser(String name, String lastName, byte age) throws SQLException {
+        Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         String sql="INSERT INTO users ( NAME, LASTNAME,AGE) VALUE( ?, ?,?)";
         try {
@@ -55,10 +63,14 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            preparedStatement.close();
+            connection.close();
         }
     }
 
     public void removeUserById(long id) throws SQLException {
+        Connection connection = getConnection();
         PreparedStatement preparedStatement= null;
         String sql ="DELETE FROM users WHERE ID=?";
         try {
@@ -68,10 +80,14 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
 
         } catch (Exception e) {
             System.out.println("не удалось удалить -"+id);
+        }finally {
+            preparedStatement.close();
+            connection.close();
         }
     }
 
     public List<User> getAllUsers() throws SQLException {
+        Connection connection = getConnection();
         List<User> userList = new ArrayList<>();
 
         String sql ="select * from users";
@@ -90,14 +106,20 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            statement.close();
+            connection.close();
         }
         return userList;
     }
 
     public void cleanUsersTable() throws SQLException {
+        Connection connection = getConnection();
         PreparedStatement preparedStatement= null;
         String sql ="DELETE FROM USERS";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.executeUpdate();
+        preparedStatement.close();
+        connection.close();
     }
 }
