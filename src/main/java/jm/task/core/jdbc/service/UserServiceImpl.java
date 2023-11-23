@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        userDaoJDBC.saveUser(name,lastName,age);
+        userDaoJDBC.saveUser(name, lastName, age);
 
     }
 

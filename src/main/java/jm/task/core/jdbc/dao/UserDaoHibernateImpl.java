@@ -11,6 +11,7 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
     public UserDaoHibernateImpl() {
 
     }
+
     private static SessionFactory sessionFactory;
 
     @Override
