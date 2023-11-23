@@ -1,5 +1,7 @@
 package jm.task.core.jdbc.util;
 
+import com.mysql.cj.xdevapi.SessionFactory;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
