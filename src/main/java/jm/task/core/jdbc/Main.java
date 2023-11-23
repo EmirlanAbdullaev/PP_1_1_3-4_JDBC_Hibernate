@@ -5,11 +5,15 @@ import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.util.Util;
 
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         // реализуйте алгоритм здесь
 
 //        Util.getConnection();
@@ -30,8 +34,11 @@ public class Main {
 
         Util.getSessionFactory();
         UserDao userDao = new UserDaoHibernateImpl();
-        userDao.saveUser("Emir","Abdullaev",(byte) 23);
-        System.out.println(userDao.getAllUsers());
+//        userDao.dropUsersTable();//+
+        userDao.createUsersTable();//+
+
+        userDao.saveUser("Emir","Abdullaev",(byte) 23);//+
+        System.out.println(userDao.getAllUsers());//+
         userDao.cleanUsersTable();
 
     }
