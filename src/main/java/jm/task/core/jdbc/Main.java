@@ -1,6 +1,7 @@
 package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.dao.UserDao;
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.util.Util;
 
@@ -11,23 +12,27 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         // реализуйте алгоритм здесь
 
-        Util.getConnection();
-        UserDao userDao = new UserDaoJDBCImpl();
-//1
-        userDao.createUsersTable();
-//2
-        userDao.saveUser("Name1", "LastName1", (byte) 20);
-        userDao.saveUser("Name2", "LastName2", (byte) 25);
-        userDao.saveUser("Name3", "LastName3", (byte) 31);
-        userDao.saveUser("Name4", "LastName4", (byte) 38);
-//3
-        userDao.getAllUsers();
-//4
+//        Util.getConnection();
+//        UserDao userDao = new UserDaoJDBCImpl();
+////1
+//        userDao.createUsersTable();
+////2
+//        userDao.saveUser("Name1", "LastName1", (byte) 20);
+//        userDao.saveUser("Name2", "LastName2", (byte) 25);
+//        userDao.saveUser("Name3", "LastName3", (byte) 31);
+//        userDao.saveUser("Name4", "LastName4", (byte) 38);
+////3
+//        userDao.getAllUsers();
+////4
+//        userDao.cleanUsersTable();
+////5
+//        userDao.dropUsersTable();
+
+        Util.getSessionFactory();
+        UserDao userDao = new UserDaoHibernateImpl();
+        userDao.saveUser("Emir","Abdullaev",(byte) 23);
+        System.out.println(userDao.getAllUsers());
         userDao.cleanUsersTable();
-//5
-        userDao.dropUsersTable();
-
-
 
     }
 }
