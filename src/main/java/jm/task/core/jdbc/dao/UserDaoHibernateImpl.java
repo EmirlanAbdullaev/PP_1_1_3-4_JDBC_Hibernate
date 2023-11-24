@@ -53,6 +53,12 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void removeUserById(long id) {
+        Transaction tx1 = session.beginTransaction();
+        User user = (User) session.get(User.class, id);
+        if (user!=null){
+            session.delete(user);
+            tx1.commit();
+        }
 
     }
 
@@ -64,11 +70,9 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-
         Transaction transaction = session.beginTransaction();
-        String sql = "DELETE TABLE IF EXISTS users";
-
-        Query query = session.createSQLQuery(sql).addEntity(User.class);
+        String stringQuery = "DELETE FROM User";
+        Query query = session.createQuery(stringQuery);
         query.executeUpdate();
         transaction.commit();
     }
