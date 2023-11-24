@@ -16,40 +16,21 @@ public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
 
-//        Util.getConnection();
-//        UserDao userDao = new UserDaoJDBCImpl();
-////1
-//        userDao.createUsersTable();
-////2
-//        userDao.saveUser("Name1", "LastName1", (byte) 20);
-//        userDao.saveUser("Name2", "LastName2", (byte) 25);
-//        userDao.saveUser("Name3", "LastName3", (byte) 31);
-//        userDao.saveUser("Name4", "LastName4", (byte) 38);
-////3
-//        userDao.getAllUsers();
-////4
-//        userDao.cleanUsersTable();
-////5
-//        userDao.dropUsersTable();
-
         Util.getSessionFactory();
         UserDao userDao = new UserDaoHibernateImpl();
-        userDao.dropUsersTable();//+
-        userDao.dropUsersTable();//+
-        userDao.createUsersTable();//+
-
-
-        userDao.saveUser("0", "0", (byte) 1);//++
-        userDao.saveUser("1", "1", (byte) 2);//++
-        userDao.saveUser("2", "0", (byte) 3);//++
-        userDao.removeUserById(1);//+
-
-        System.out.println(userDao.getAllUsers());//+
-
-
-        userDao.cleanUsersTable();//+
-        userDao.cleanUsersTable();//+
-
+//1
+        userDao.createUsersTable();
+//2
+        userDao.saveUser("Name1", "LastName1", (byte) 20);
+        userDao.saveUser("Name2", "LastName2", (byte) 25);
+        userDao.saveUser("Name3", "LastName3", (byte) 31);
+        userDao.saveUser("Name4", "LastName4", (byte) 38);
+//3
+        userDao.getAllUsers();
+//4
+        userDao.cleanUsersTable();
+//5
+        userDao.dropUsersTable();
 
     }
 }
