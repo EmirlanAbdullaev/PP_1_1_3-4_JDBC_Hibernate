@@ -10,7 +10,6 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -20,6 +19,7 @@ public class Util {
     private static final String USER = "Emir";
     private static final String PASS = "100%Hlopok";
     private static SessionFactory sessionFactory;
+
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
